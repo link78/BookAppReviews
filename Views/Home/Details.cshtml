@@ -1,0 +1,38 @@
+﻿@model BookViewIndex
+
+<div class="container">
+    <div class="jumbotron">
+        <h2>Book Details</h2>
+    </div>
+    <div>
+        <div class="form-control">
+            <label><b>Title: </b></label> @Html.DisplayTextFor(model => model.Title)
+        </div>
+        <div class="form-control">
+            <label><b>Genre: </b></label> @Html.DisplayTextFor(model => model.Genre)
+        </div>
+        <div class="form-control">
+            <label><b>Price: </b></label> @Html.DisplayTextFor(model => model.Price)
+        </div>
+
+        <div class="form-control">
+            <label><b>Published: </b></label> @Html.DisplayTextFor(model => model.Year)
+        </div>
+        <div class="form-control">
+            <label><b>Author Name: </b></label> @Html.DisplayTextFor(model => model.Name)
+        </div>
+        <div class="form-control">
+            <label><b>Publisher Name: </b></label> @Html.DisplayTextFor(model => model.Publisher)
+        </div>
+        <div class="form-control">
+            <label><b>Number of Books: </b></label> @Html.DisplayTextFor(model => model.BooksCount)
+        </div>
+
+
+
+
+    </div>
+    <div class="text-center">
+        <a asp-action="Index" asp-controller="home" class="btn btn-default">Cancel</a>
+    </div>
+</div>

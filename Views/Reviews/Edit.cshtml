@@ -1,0 +1,37 @@
+﻿@model Review
+
+<div class="container">
+    <div class="jumbotron">
+        <h2 class="text-center">Update Reviews</h2>
+
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div asp-validation-summary="All"></div>
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <label asp-for="Body">Title</label>
+            <div><span asp-validation-for="Body" class="text-danger"></span></div>
+            <input class="form-control" asp-for="Body" />
+
+        </div>
+        <div class="form-group">
+            <label asp-for="Rating"></label>
+            <div><span asp-validation-for="Rating" class="text-danger"></span></div>
+            <input class="form-control" asp-for="Rating" />
+
+        </div>
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <div><span asp-validation-for="UserName" class="text-danger"></span></div>
+            <input class="form-control" asp-for="UserName" />
+
+        </div>
+        <input type="hidden" asp-for="BookId" />
+
+
+        <button type="submit" class="btn btn-primary">Save Info</button>
+        <a asp-action="Index" class="btn btn-default" asp-controller="Reviews">Cancel</a>
+    }
+</div>

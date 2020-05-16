@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Review>
+
+
+<div class="container">
+    <table>
+        <tr>
+            <th>Rating</th>
+            <th>Body</th>
+            <th>Reviewer Name</th>
+        </tr>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.Rating</td>
+                <td>@r.Body</td>
+                <td>@r.UserName</td>
+
+            </tr>
+
+        }
+    </table>
+
+</div>
+
