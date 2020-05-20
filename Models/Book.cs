@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,7 +17,9 @@ namespace MovieWebAppCore.Models
         public int Year { get; set; }
         [Required(ErrorMessage = "Please enter a price")]
         [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18,4)")]
         public decimal Price { get; set; }
+
         [Required(ErrorMessage = "Please enter a genre name")]
         public string Genre { get; set; }
 
