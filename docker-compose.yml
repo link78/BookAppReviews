@@ -1,6 +1,19 @@
 version: "3"
 
 services:
+  sqlserver:
+    container_name: sqlserver
+    build: 
+      context: ./sql
+      dockerfile: Dockerfile
+    ports:
+      - "1433:1433"
+    tty: true
+
+    depends_on:
+      - webapp
+
+      
   webapp:
     build:
       context: .
@@ -10,15 +23,5 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports: 
       - "80:80"
-    depends_on:
-      - sqlServer
       
-  sqlServer:
-    image: "mcr.microsoft.com/mssql/server:2019-CU3-ubuntu-18.04"
-    container_name: 'sqlServer'
-    hostname: sqlServer
-    environment:
-        SA_PASSWORD: "Marine7815@@"
-        ACCEPT_EULA: "Y"
-    ports:
-      - "1433:1433"
+  

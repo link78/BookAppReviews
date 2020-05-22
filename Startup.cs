@@ -27,15 +27,11 @@ namespace MovieWebAppCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var server = Configuration["DBServer"] ?? "sqlServer";
-            var port   = Configuration["DBPort"] ?? "1433";
-            var user   = Configuration["DBUser"] ?? "SA";
-            var password= Configuration["DBPassword"] ?? "Marine7815@@";
-            var db     = Configuration["DBDatabase"] ?? "MovieWebDB";
+        
 
 
             services.AddDbContext<BookDbContext>(options => 
-                options.UseSqlServer($"Server={server},{port};Initial Catalog={db};User ID={user};Password={password}"));
+                options.UseSqlServer(Configuration.GetConnectionString("Connection")));
             services.AddTransient<IBookRepository, BookRepository>();
             services.AddTransient<IReviewRepository, ReviewRepository>();
             services.AddTransient<IAuthorRepository, AuthorRepository>();
