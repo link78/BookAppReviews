@@ -27,7 +27,7 @@ namespace MovieWebAppCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var server = Configuration["DBServer"] ?? "localhost";
+            var server = Configuration["DBServer"] ?? "sqlServer";
             var port   = Configuration["DBPort"] ?? "1433";
             var user   = Configuration["DBUser"] ?? "SA";
             var password= Configuration["DBPassword"] ?? "Marine7815@@";
@@ -69,7 +69,7 @@ namespace MovieWebAppCore
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-           SeedingData.Initializer(app);
+           //SeedingData.Initializer(app);
         }
     }
 }

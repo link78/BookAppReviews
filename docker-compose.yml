@@ -10,8 +10,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports: 
       - "80:80"
-   # depends_on:
-    #  - sqlServer
+    depends_on:
+      - sqlServer
       
   sqlServer:
     image: "mcr.microsoft.com/mssql/server:2019-CU3-ubuntu-18.04"
