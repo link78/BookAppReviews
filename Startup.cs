@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MovieWebAppCore.Abstract;
 using MovieWebAppCore.Models;
-using MovieWebAppCore.Data;
+
 
 namespace MovieWebAppCore
 {
