@@ -2,7 +2,7 @@ ASP.NET CORE 3.1 Application using EntityFrameWorkCore. Book Reviews Application
 also give a review. This App will be deployed later in Docker containers and also in kubernetes.
 
 To run this AspNet core in docker:
-1. clone it
+1. clone it or fork
 2. Navigate to root project
 3. Make sure you have installed docker and docker-compose
 4. Run => docker-compose up --build or docker-compose up --build -d to skip logs
