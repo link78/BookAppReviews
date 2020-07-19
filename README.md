@@ -20,15 +20,26 @@ webapp      bookreviewappcore_webapp      latest   dcc22cacb7ff   240.4 MB
 To this app on azure kubernetes, first you need:
 
 7. create a resource group: az create group -n mydemo-rg -l eastus
+
 8. create an azure acr: az acr create -g mydemo-rg -n mydemoacr --sku basic
+
 9. login into your acr: az acr login -n mydemoacr
+
 10. create an alias of those images: 
+
 docker tag bookreviewappcore_sqlserver mydemoacr.azurecr.io/websqlserver
+
 docker push mydemoacr.azurecr.io/websqlserver to push the image into your acr repository
+
 docker tag bookreviewappcore_webapp mydemoacr.azurecr.io/webappfront:v1
+
 docker push mydemoacr.azurecr.io/webappfront:v1
+
 11.Replace those images with those in the webappreview.yaml
+
 12.Create azure aks: az aks create -g mydemo-rg -n mydemoAKS -c 1 --generate-ssh-keys --attach-acr mydemoacr --enable-addons monitoring
+
 12.install the kubectl: az aks install-cli and run az aks get-credentials -g mydemo-rg -n mydemoAKS
 kubectl get nodes to verify the command
+
 13.Deploy web app: kubectl apply -f webappreview.yml
