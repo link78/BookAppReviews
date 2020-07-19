@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azure-sqlserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: azure-sqlserver
+  template:
+    metadata:
+      labels:
+        app: azure-sqlserver
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: azure-sqlserver
+        image: fasoacr.azurecr.io/appsqlserver:v1
+        ports:
+        - containerPort: 1433
+          name: azure-sqlserver
+        env:
+        - name: MSSQL_PID
+          value: "Developer"
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: SA_PASSWORD
+          value: Marine7815@@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: azure-sqlserver
+spec:
+  ports:
+  - port: 1433
+  selector:
+    app: azure-sqlserver
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azure-webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: azure-webapp
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: azure-webapp
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: azure-webapp
+        image: fasoacr.azurecr.io/front-app:v1
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: azure-webapp
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: azure-webapp
+
