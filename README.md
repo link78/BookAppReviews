@@ -9,15 +9,11 @@ To run this AspNet core in docker:
 5. To shutdown just docker-compose down and to view logs run docker-compose logs
 5. docker-compose ps to view containers and browse into http://0.0.0.0:80 to run the app
 
- docker-compose images
-Container           Repository             Tag       Image Id       Size  
---------------------------------------------------------------------------
-sqlserver   bookreviewappcore_sqlserver   latest   39eba9f492d2   1.489 GB
-webapp      bookreviewappcore_webapp      latest   dcc22cacb7ff   240.4 MB
+ docker-compose images to list all images
 
 6. docker-compose down to shut the containers
 
-To this app on azure kubernetes, first you need:
+To run this app on azure kubernetes, first you need:
 
 7. create a resource group: az create group -n mydemo-rg -l eastus
 
