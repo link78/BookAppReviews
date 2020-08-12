@@ -10,14 +10,14 @@ using MovieWebAppCore.Models;
 namespace MovieWebAppCore.Migrations
 {
     [DbContext(typeof(BookDbContext))]
-    [Migration("20200520161917_Initial")]
-    partial class Initial
+    [Migration("20200811022159_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
