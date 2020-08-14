@@ -1,3 +1,4 @@
 echo 'Starting the Database'
 
-/opt/mssql/bin/sqlservr & ./setup-db.sh & bash
+# Run Microsoft SQl Server and initialization script (at the same time)
+/usr/src/app/setup-db.sh & /opt/mssql/bin/sqlservr
