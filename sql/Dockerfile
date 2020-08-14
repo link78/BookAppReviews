@@ -1,24 +1,21 @@
 FROM mcr.microsoft.com/mssql/server:2017-CU17-ubuntu
 
-# Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+ENV ACCEPT_EULA=Y
 
-# Copy initialization scripts
-COPY . /usr/src/app
+ENV SA_PASSWORD=Marine7815@@
 
-# Grant permissions for the run-initialization script to be executable
-RUN chmod +x /usr/src/app/setup-db.sh
-
-# Set environment variables, not to have to write them with docker run command
-# Note: make sure that your password matches what is in the run-initialization script 
-ENV SA_PASSWORD Marine7815@@
-ENV ACCEPT_EULA Y
 ENV MSSQL_PID Express
 
-# Expose port 1433 in case accesing from other container
+RUN mkdir -p /src/src/app
+
+WORKDIR /src/src/app
+
+COPY . ./
+
 EXPOSE 1433
 
-# Run Microsoft SQl Server and initialization script (at the same time)
-# Note: If you want to start MsSQL only (without initialization script) you can comment bellow line out, CMD entry from base image will be taken
+RUN chmod +x ./setup-db.sh
+RUN chmod +x ./entrypoint.sh
+
+
 CMD /bin/bash ./entrypoint.sh

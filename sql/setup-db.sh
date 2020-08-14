@@ -1,6 +1,7 @@
-# Wait to be sure that SQL Server came up
+echo 'Please wait while sql server 2017 is running';
+
 sleep 90s
 
-# Run the setup script to create the DB and the schema in the DB
-# Note: make sure that your password matches what is in the Dockerfile
-/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Marine7815@@ -d master -i sqlscript.sql
+echo 'Initializing db after 90 second';
+
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Marine7815@@ -d master -i sqlscript.sql
