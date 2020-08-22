@@ -1,6 +1,13 @@
 ASP.NET CORE 3.1 Application using EntityFrameWorkCore. Book Reviews Application is sample application that enable user to add his/her favorite book and 
 also give a review. This App will be deployed later in Docker containers and also in kubernetes.
 
+Click this button to depploy azure web, web app service, sql server and sql database with azure key vault
+
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Flink78%2FBookAppReviews%2Fmaster%2Fazuredeployapp.yaml" target="_blank">
+    <img src="http://azuredeploy.net/deploybutton.png"/>
+</a>
+
+
 To run this AspNet core in docker:
 1. clone it or fork
 2. Navigate to root project
