@@ -3,7 +3,7 @@ also give a review. This App will be deployed later in Docker containers and als
 
 Click this button to depploy azure web, web app service, sql server and sql database with azure key vault
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Flink78%2FBookAppReviews%2Fmaster%2Fazuredeployapp.yaml" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Flink78%2FBookAppReviews%2Fmaster%2Fazuredeployapp.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
