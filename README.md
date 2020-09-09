@@ -7,42 +7,56 @@ Click this button to depploy azure web, web app service, sql server and sql data
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-
 To run this AspNet core in docker:
-1. clone it or fork
-2. Navigate to root project
-3. Make sure you have installed docker and docker-compose
-4. Run => docker-compose up --build or docker-compose up --build -d to skip logs
-5. To shutdown just docker-compose down and to view logs run docker-compose logs
-5. docker-compose ps to view containers and browse into http://0.0.0.0:80 to run the app
 
- docker-compose images to list all images
+clone it or fork
+Navigate to root project
+Make sure you have installed docker and docker-compose
+This script will install docker and docker-compose for Ubuntu
 
-6. docker-compose down to shut the containers
+$ sudo apt-get update && sudo apt install apt-transport-https ca-certificates curl software-properties-common
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+$ sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+$ sudo chmod +x /usr/local/bin/docker-compose
+$ sudo usermod -aG docker $USER
+$ docker version
+To build the project run this docker-compose command:
 
-To run this app on azure kubernetes, first you need:
+$ docker-compose up --build -d
+$ docker-compose logs (to view logs)
+$ docker-compose ps (to list those running containers)
+$ http://localhost:80 to browse the web application
+$ docker-compose down (to shut down containers)
+To run this app on azure kubernetes, first you need install azure cli first or use the azure cloud shell. Use this link to install in your local environment:
+Azure cli
+Create a resource group:
 
-7. create a resource group: az create group -n mydemo-rg -l eastus
+$ az login (into Azure account)
+$ az create group -n mydemo-rg -l eastus
+Create an azure acr:
 
-8. create an azure acr: az acr create -g mydemo-rg -n mydemoacr --sku basic
+$ az acr create -g mydemo-rg -n mydemoacr --sku basic
+login into your acr:
 
-9. login into your acr: az acr login -n mydemoacr
+$ az acr login -n mydemoacr
+Create an alias of those images:
 
-10. create an alias of those images: 
-
-docker tag bookreviewappcore_sqlserver mydemoacr.azurecr.io/websqlserver
-
-docker push mydemoacr.azurecr.io/websqlserver to push the image into your acr repository
-
-docker tag bookreviewappcore_webapp mydemoacr.azurecr.io/webappfront:v1
-
-docker push mydemoacr.azurecr.io/webappfront:v1
-
+$ docker tag bookreviewappcore_sqlserver mydemoacr.azurecr.io/websqlserver
+$ docker push mydemoacr.azurecr.io/websqlserver (to push the image into your acr repository)
+$ docker tag bookreviewappcore_webapp mydemoacr.azurecr.io/webappfront:v1
+$ docker push mydemoacr.azurecr.io/webappfront:v1
 11.Replace those images with those in the webappreview.yaml
 
-12.Create azure aks: az aks create -g mydemo-rg -n mydemoAKS -c 1 --generate-ssh-keys --attach-acr mydemoacr --enable-addons monitoring
+12.Create azure aks:
 
-12.install the kubectl: az aks install-cli and run az aks get-credentials -g mydemo-rg -n mydemoAKS
-kubectl get nodes to verify the command
+$ az aks create -g mydemo-rg -n mydemoAKS -c 1 --generate-ssh-keys --attach-acr mydemoacr --enable-addons monitoring
+12.install the kubectl:
 
-13.Deploy web app: kubectl apply -f webappreview.yml
+$ az aks install-cli  
+$ az aks get-credentials -g mydemo-rg -n mydemoAKS 
+$ kubectl get nodes (to verify the command if it works)
+13.Deploy web app:
+
+$ kubectl apply -f webappreview.yml
+
